@@ -1,0 +1,187 @@
+package main;
+
+import java.util.ArrayList;
+import java.util.Random;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
+public class Person
+{
+    private final StringProperty firstName = new SimpleStringProperty(this, "firstName", "");
+    private final StringProperty lastName = new SimpleStringProperty(this, "lastName", "");
+    private final StringProperty address = new SimpleStringProperty(this, "address", "");
+    private final StringProperty brzina = new SimpleStringProperty(this, "brzina", "");
+    private final StringProperty protok = new SimpleStringProperty(this, "protok", "");
+    private final StringProperty trajanje = new SimpleStringProperty(this,"trajanje", "");
+    private final ObjectProperty<Gender> gender = new SimpleObjectProperty(this, "gender", Gender.FEMALE);
+    
+
+    public Person()
+    {
+
+    }
+
+    public Person(String firstName, String lastName, String address, String brzina, String protok, String trajanje,Gender gender)
+    {
+	this.firstName.set(firstName);
+	this.lastName.set(lastName);
+	this.address.set(address);
+        this.brzina.set(brzina);
+        this.protok.set(protok);
+        this.trajanje.set(trajanje);
+	this.gender.set(gender);
+        
+    }
+
+    public Person(String firstName)
+    {
+	this.firstName.set(firstName);
+    }
+
+    public Person(String firstName, String lastName)
+    {
+	this.firstName.set(firstName);
+	this.lastName.set(lastName);
+    }
+
+    public String getFirstName()
+    {
+	return firstName.get();
+    }
+
+    public void setFirstName(String firstName)
+    {
+	this.firstName.set(firstName);
+    }
+
+    public StringProperty firstNameProperty()
+    {
+	return firstName;
+    }
+
+    public String getLastName()
+    {
+	return lastName.get();
+    }
+
+    public void setLastName(String lastName)
+    {
+	this.lastName.set(lastName);
+    }
+
+    public StringProperty lastNameProperty()
+    {
+	return lastName;
+    }
+
+    public String getAddress()
+    {
+	return address.get();
+    }
+
+    public void setAddress(String address)
+    {
+	this.address.set(address);
+    }
+
+    public StringProperty addressProperty()
+    {
+	return address;
+    }
+    
+    public String getBrzina() {
+        return brzina.get();
+    }
+
+    public void setBrzina(String brzina) {
+        this.brzina.set(brzina);
+    }
+
+    public StringProperty brzinaProperty() {
+        return brzina;
+    }
+
+    public String getProtok() {
+        return protok.get();
+    }
+
+    public void setProtok(String protok) {
+        this.protok.set(protok);
+    }
+
+    public StringProperty protokProperty() {
+        return protok;
+    }
+
+    public String getTrajanje() {
+        return trajanje.get();
+    }
+
+    public void setTrajanje(String trajanje) {
+        this.trajanje.get();
+    }
+
+    public StringProperty trajanjeProperty() {
+        return trajanje;
+    }
+    
+    public Gender getGender()
+    {
+	return gender.get();
+    }
+
+    public void setGender(Gender gender)
+    {
+	this.gender.set(gender);
+    }
+
+    public ObjectProperty<Gender> genderProperty()
+    {
+	return gender;
+    }
+    
+    
+    private final ObjectProperty<ArrayList<String>> errorList = new SimpleObjectProperty<>(this, "errorList", new ArrayList<>());
+
+    public ObjectProperty<ArrayList<String>> errorsProperty()
+    {
+	return errorList;
+    }
+
+    public boolean isValid()
+    {
+	boolean isValid = true;
+	if(firstName.get() != null && firstName.get().equals(""))
+	{
+	    errorList.getValue().add("First name can't be empty!");
+	    isValid = false;
+	}
+	if(lastName.get().equals(""))
+	{
+	    errorList.getValue().add("Last name can't be empty!");
+	    isValid = false;
+	}
+	if(address.get().equals(""))
+	{
+	    errorList.getValue().add("Address can't be empty!");
+	    isValid = false;
+	}
+        if (brzina.get().equals("")) {
+            errorList.getValue().add("Brzina moze biti 2, 5, 10, 20, 50 i 100 Mbit");
+            isValid = false;
+        }
+        if (protok.get().equals("")) {
+            errorList.getValue().add("Protok moze biti 1, 5, 10, 100 GB ili Flat");
+            isValid = false;
+        }
+        if (trajanje.get().equals("")) {
+            errorList.getValue().add("Trajanje moze biti jednu ili dve godine.");
+            isValid = false;
+        }
+	return isValid;
+    }
+}
