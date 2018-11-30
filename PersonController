@@ -64,6 +64,7 @@ public class PersonController
         brzina.textProperty().bindBidirectional(person.brzinaProperty());
         protok.textProperty().bindBidirectional(person.protokProperty());
         trajanje.textProperty().bindBidirectional(person.trajanjeProperty());
+        id.textProperty().createXXXBinding()(person.idProperty());
 
 	gender.selectedToggleProperty().addListener(new ChangeListener<Toggle>()
 	{
@@ -98,10 +99,10 @@ public class PersonController
 	    switch(selected.getId())
 	    {
 		case "male":
-		    persons.add(new Person(firstName.getText(), lastName.getText(), address.getText(), brzina.getText(), protok.getText(), trajanje.getText(),Gender.MALE));
+		    persons.add(new Person(id.setText((int)(Math.random() * 50 + 1)),firstName.getText(), lastName.getText(), address.getText(), brzina.getText(), protok.getText(), trajanje.getText(),Gender.MALE));
 		    break;
 		case "female":
-		    persons.add(new Person(firstName.getText(), lastName.getText(), address.getText(), brzina.getText(), protok.getText(), trajanje.getText(), Gender.FEMALE));
+		    persons.add(new Person(id.setText((int)(Math.random() * 50 + 1)), firstName.getText(), lastName.getText(), address.getText(), brzina.getText(), protok.getText(), trajanje.getText(), Gender.FEMALE));
 		    break;
 	    }
 	    tabela.setItems(persons);
