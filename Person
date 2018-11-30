@@ -18,14 +18,14 @@ public class Person
     private final StringProperty protok = new SimpleStringProperty(this, "protok", "");
     private final StringProperty trajanje = new SimpleStringProperty(this,"trajanje", "");
     private final ObjectProperty<Gender> gender = new SimpleObjectProperty(this, "gender", Gender.FEMALE);
-    
+    private final IntegerProperty id = new SimpleIntegerProperty(0); 
 
     public Person()
     {
 
     }
 
-    public Person(String firstName, String lastName, String address, String brzina, String protok, String trajanje,Gender gender)
+    public Person(String firstName, String lastName, String address, String brzina, String protok, String trajanje,Gender gender, int id)
     {
 	this.firstName.set(firstName);
 	this.lastName.set(lastName);
@@ -34,7 +34,7 @@ public class Person
         this.protok.set(protok);
         this.trajanje.set(trajanje);
 	this.gender.set(gender);
-        
+        this.id.set(id);
     }
 
     public Person(String firstName)
@@ -144,7 +144,15 @@ public class Person
 	return gender;
     }
     
-    
+    public int getID(){
+        return id.get();
+    }
+    public void setID(int id){
+        this.id.get();
+    }
+    public IntegerProperty idProperty(){
+        return id;
+    }
     private final ObjectProperty<ArrayList<String>> errorList = new SimpleObjectProperty<>(this, "errorList", new ArrayList<>());
 
     public ObjectProperty<ArrayList<String>> errorsProperty()
